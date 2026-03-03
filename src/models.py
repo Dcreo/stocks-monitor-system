@@ -1,5 +1,5 @@
-from sqlalchemy import Boolean, Integer, String, Column
-from database import Base
+from sqlalchemy import Boolean, Integer, String, Column, Numeric
+from src.database import Base
 
 class Stock(Base):
     __tablename__ = "stocks"
@@ -7,3 +7,4 @@ class Stock(Base):
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, index=True)
     ticker = Column(String, unique=True)
+    price = Column(Numeric(10, 2), nullable=False)
