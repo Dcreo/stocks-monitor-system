@@ -8,3 +8,4 @@ class Stock(Base):
     name = Column(String, index=True)
     ticker = Column(String, unique=True)
     price = Column(Numeric(10, 2), nullable=False)
+    exchange = Column(String, index=True)
