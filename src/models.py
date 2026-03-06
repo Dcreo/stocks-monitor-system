@@ -7,5 +7,5 @@ class Stock(Base):
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, index=True)
     ticker = Column(String, unique=True)
-    price = Column(Numeric(10, 2), nullable=False)
+    price = Column(Numeric(10, 2), nullable=False, default=0.00)
     exchange = Column(String, index=True)
