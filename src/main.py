@@ -1,12 +1,12 @@
 from fastapi import FastAPI, HTTPException, Depends
 from pydantic import BaseModel
-from database import engine, SessionLocal
+from src.database import engine, SessionLocal
 from sqlalchemy.orm import Session
 from typing import List, Annotated
 
 import uvicorn
 import os
-import models
+import src.models as models
 
 app = FastAPI()
 models.Base.metadata.create_all(bind=engine)
