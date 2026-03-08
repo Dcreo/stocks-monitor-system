@@ -24,7 +24,7 @@ def get_db():
     finally:
         db.close()
 
-db_instance = Annotated[Session, Depends(get_db)]
+db = Annotated[Session, Depends(get_db)]
 
 @app.get("/")
 def index():
@@ -39,7 +39,7 @@ def stock(id):
     return f"Stock with id: {id}"
 
 @app.post("/stocks")
-async def create_stock(stock: NewStock, db: db_instance):
+async def create_stock(stock: NewStock, db: db):
     new_stock = Stock(
         name=stock.name,
         ticker=stock.ticker,
@@ -50,11 +50,6 @@ async def create_stock(stock: NewStock, db: db_instance):
     db.commit()
     db.refresh(new_stock)
     
-    print("***************************")
-    print("action params:", stock.name)
-    print("record", new_stock)
-    print("***************************")
-
     return new_stock 
 
 if __name__ == "__main__":
