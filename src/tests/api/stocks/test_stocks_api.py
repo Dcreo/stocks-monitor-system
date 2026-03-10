@@ -20,3 +20,9 @@ async def test_create_stock_api(client):
     
     assert response.status_code == 200
     assert stock.id is not None
+
+async def test_update_stocks_api(client):
+    response = await client.get("/stocks")
+
+    assert response.status_code == 200
+

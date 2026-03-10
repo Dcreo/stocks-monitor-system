@@ -30,6 +30,7 @@ async def client(setup_database):
         base_url="http://testserver", 
         trust_env=False, 
         transport=transport) as client:
+
         yield client
 
     app.dependency_overrides.clear()
