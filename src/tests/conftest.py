@@ -6,6 +6,7 @@ from src.main import app, get_db
 from src.models import Base
 from httpx import ASGITransport
 from fixtures.database import db, TestingSessionLocal, engine
+from fixtures.stocks import created_stock_with_api
 
 transport = ASGITransport(app=app)
 
