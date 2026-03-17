@@ -1,6 +1,7 @@
 import pytest
 
-from src.models import Stock
+from src.main import StockItem
+from decimal import Decimal
 
 @pytest.mark.asyncio
 async def test_get_stocks_api(client):
@@ -15,11 +16,11 @@ async def test_create_stock_api(client):
         "exchange": "TestExchange"
     })
 
-    data = response.json()
-    stock = Stock(**data)
-    
+    stock = StockItem(**response.json())
+
     assert response.status_code == 200
     assert stock.id is not None
+    assert stock.name == "Test company"
 
 async def test_update_stocks_api(client, new_stock):
     response = await client.patch(f"/stocks/{new_stock.id}", json={
@@ -27,8 +28,7 @@ async def test_update_stocks_api(client, new_stock):
         "price": 10.10
     })
 
-    data = response.json()
+    updated_stock = StockItem(**response.json())
 
-    # print("****************")
-    # print(data)
-    # print("****************")
+    assert updated_stock.name == "New Company Name" 
+    assert updated_stock.price == Decimal("10.10")

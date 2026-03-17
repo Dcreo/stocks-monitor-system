@@ -61,13 +61,19 @@ async def create_stock(stock: StockItem, db: db):
     return new_stock 
 
 @app.patch("/stocks/{stock_id}")
-async def update_stock(stock_id: int, stock_data: StockUpdate, db: db):
+async def update_stock(stock_id: int, data: StockUpdate, db: db):
     stock = db.get(Stock, stock_id)
-    # print("***********************")
-    # print(stock_data)
-    # print(stock)
-    # print("***********************")
-    
+
+    if not stock:
+        return {"error": "Stock not found"}
+
+    for field, value in data.model_dump(exclude_unset=True).items():
+        setattr(stock, field, value)
+
+    db.commit()
+    db.refresh(stock)
+
+    return stock
 
 if __name__ == "__main__":
     import uvicorn
