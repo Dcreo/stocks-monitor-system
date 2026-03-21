@@ -1,5 +1,6 @@
 from sqlalchemy import Boolean, Integer, String, Column, Numeric
 from src.database import Base
+import json
 
 class Stock(Base):
     __tablename__ = "stocks"
@@ -9,3 +10,11 @@ class Stock(Base):
     ticker = Column(String, unique=True)
     price = Column(Numeric(10, 2), nullable=False, default=0.00)
     exchange = Column(String, index=True)
+
+    def to_dict(self):
+        return {c.name: getattr(self, c.name) 
+                for c in self.__table__.columns
+                if getattr(self, c.name) is not None}
+
+    def to_json(self):
+        return json.dumps(self.to_dict())
