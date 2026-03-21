@@ -75,6 +75,20 @@ async def update_stock(stock_id: int, data: StockUpdate, db: db):
 
     return stock
 
+@app.delete("/stocks/{stock_id}")
+async def delete_stock(stock_id: int, db: db):
+    stock = db.get(Stock, stock_id)
+    
+    if not stock:
+        return {"error": "Stock not found"}
+
+    db.delete(stock)
+    db.commit()
+
+    return stock
+
+
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run("main:app", reload=True, port=8081)

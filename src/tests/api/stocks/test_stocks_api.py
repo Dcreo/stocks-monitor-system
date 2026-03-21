@@ -36,12 +36,12 @@ async def test_update_stocks_api(client, new_stock):
     assert updated_stock.name == "New Company Name" 
     assert updated_stock.price == Decimal("10.10")
 
-# @pytest.mark.asyncio
-# async def test_delete_stock_api(client, new_stock):
-#     response = await client.delete(f"/stocks/{new_stock.id}")
-#    
-#     deleted_stock = StockItem(**response.json())
-#
-#     assert response.status_code == 200
-#     assert deleted_stock.id == new_stock.id
+@pytest.mark.asyncio
+async def test_delete_stock_api(client, new_stock):
+    response = await client.delete(f"/stocks/{new_stock.id}")
+    
+    deleted_stock = StockItem(**response.json())
+
+    assert response.status_code == 200
+    assert deleted_stock.id == new_stock.id
 

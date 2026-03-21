@@ -14,10 +14,7 @@ def stock_factory(db):
 async def created_stock_with_api(stock_factory, client):
     # TODO common paths for API in file
     stock = stock_factory()
-    print("Factory stock", stock.to_json())
     result = await client.post("/stocks", json=stock.to_dict())
-
-    print("Result", result.json())
 
     return StockItem(**result.json())
 
