@@ -1,6 +1,6 @@
 import pytest
 
-from src.main import StockItem
+from src.schemas.stock import StockDTO
 from src.models import Stock
 from src.tests.factories.stock_factory import StockFactory
 
@@ -16,5 +16,5 @@ async def created_stock_with_api(stock_factory, client):
     stock = stock_factory()
     result = await client.post("/stocks", json=stock.to_dict())
 
-    return StockItem(**result.json())
+    return StockDTO(**result.json())
 

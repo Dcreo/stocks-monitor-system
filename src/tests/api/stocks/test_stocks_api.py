@@ -1,7 +1,8 @@
 import pytest
 
-from src.main import StockItem
 from decimal import Decimal
+
+from src.schemas.stock import StockDTO
 
 @pytest.mark.asyncio
 async def test_get_stocks_api(client):
@@ -17,7 +18,7 @@ async def test_create_stock_api(client):
         "exchange": "TestExchange"
     })
 
-    stock = StockItem(**response.json())
+    stock = StockDTO(**response.json())
 
     assert response.status_code == 200
     assert stock.id is not None
@@ -30,7 +31,7 @@ async def test_update_stocks_api(client, new_stock):
         "price": 10.10
     })
 
-    updated_stock = StockItem(**response.json())
+    updated_stock = StockDTO(**response.json())
 
     assert response.status_code == 200
     assert updated_stock.name == "New Company Name" 
@@ -40,7 +41,7 @@ async def test_update_stocks_api(client, new_stock):
 async def test_delete_stock_api(client, new_stock):
     response = await client.delete(f"/stocks/{new_stock.id}")
     
-    deleted_stock = StockItem(**response.json())
+    deleted_stock = StockDTO(**response.json())
 
     assert response.status_code == 200
     assert deleted_stock.id == new_stock.id
