@@ -10,6 +10,8 @@ from fixtures.database import db, TestingSessionLocal, engine
 from fixtures.stocks import * 
 from fixtures.users import * 
 
+from reports.config import * 
+
 transport = ASGITransport(app=app)
 
 @pytest.fixture(scope="session")
