@@ -8,6 +8,7 @@ from src.database import get_db
 
 from fixtures.database import db, TestingSessionLocal, engine
 from fixtures.stocks import * 
+from fixtures.users import * 
 
 transport = ASGITransport(app=app)
 

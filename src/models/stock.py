@@ -2,7 +2,6 @@
 from sqlalchemy import Boolean, Integer, String, Column, Numeric
 from src.database import Base
 from src.models.mixins import JSONSerializer
-import json
 
 class Stock(Base, JSONSerializer):
     __tablename__ = "stocks"

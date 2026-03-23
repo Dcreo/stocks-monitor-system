@@ -4,7 +4,7 @@ from sqlalchemy import Boolean, Integer, String, Column, Numeric
 from src.database import Base
 from .mixins import JSONSerializer
 
-class User(Base):
+class User(Base, JSONSerializer):
     __tablename__ = "users"
 
     id = Column(Integer, primary_key=True, index=True)
