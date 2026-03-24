@@ -11,8 +11,8 @@ db = Annotated[Session, Depends(get_db)]
 
 router = APIRouter()
 
-@router.post("/auth/register")
-async def register(user: UserCreateDTO, db: db, response_model=UserDTO):
+@router.post("/auth/register", response_model=UserDTO)
+async def register(user: UserCreateDTO, db: db):
     new_user = User(
         username=user.username,
         email=user.email,

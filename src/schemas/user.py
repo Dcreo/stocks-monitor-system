@@ -5,6 +5,9 @@ class UserDTO(BaseModel):
     username: str
     email: str
 
+    class Config:
+        from_attributes = True
+
 class UserCreateDTO(BaseModel):
     username: str
     password: str
