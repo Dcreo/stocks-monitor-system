@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from typing import Annotated
 from src.database import get_db
 from src.models.user import User 
-from src.schemas.user import UserCreateDTO  
+from src.schemas.user import *  
 from src.core.security import get_password_hash, verify_password
 
 
@@ -12,7 +12,7 @@ db = Annotated[Session, Depends(get_db)]
 router = APIRouter()
 
 @router.post("/auth/register")
-async def register(user: UserCreateDTO, db: db):
+async def register(user: UserCreateDTO, db: db, response_model=UserDTO):
     new_user = User(
         username=user.username,
         email=user.email,
