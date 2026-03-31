@@ -4,8 +4,8 @@ from colorama import Fore, Style, init
 
 init(autoreset=True)
 
-MAIN_CATEGORIES = {"stocks", "users"}
-SUB_CATEGORIES = {"api", "model", "auth"}
+MAIN_CATEGORIES = {"stocks", "users", "auth"}
+SUB_CATEGORIES = {"api", "model"}
 
 ICONS = {
     "passed": "✅",
