@@ -34,11 +34,11 @@ async def register(user: UserCreateDTO, db: db):
 async def login_with_jwt_token(form_data: LoginDTO, db: db):
     user = authenticate_user(db, form_data.email, form_data.password)
     
-    if not user:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Incorrect username or password",
-            headers={"WWW-Authenticate": "Bearer"},
-        )
+    # if not user:
+    #     raise HTTPException(
+    #         status_code=status.HTTP_401_UNAUTHORIZED,
+    #         detail="Incorrect username or password",
+    #         headers={"WWW-Authenticate": "Bearer"},
+    #     )
     print("FORM DATA", form_data)
     pass
