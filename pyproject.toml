@@ -32,6 +32,8 @@ pwdlib = {extras = ["argon2"], version = "^0.3.0"}
 colorama = "^0.4.6"
 pytest-sugar = "^1.1.1"
 pyjwt = "^2.12.1"
+python-lsp-server = "^1.14.0"
+python-lsp-autoimport = "^0.0.1"
 
 [build-system]
 requires = ["poetry-core"]

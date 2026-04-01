@@ -12,3 +12,6 @@ class UserCreateDTO(BaseModel):
     username: str
     password: str
     email: str
+
+class UserWithJwt(UserDTO):
+    jwt: str
