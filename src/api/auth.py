@@ -47,4 +47,4 @@ async def login_with_jwt_token(form_data: LoginDTO, db: db):
         data={"sub": user.username}, expires_delta=access_token_expires
     )
 
-    return Token(access_token=access_token, token_type="Bearer")
+    return TokenDTO(access_token=access_token, token_type="Bearer")

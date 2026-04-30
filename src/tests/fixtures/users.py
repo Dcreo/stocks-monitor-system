@@ -1,6 +1,6 @@
 import pytest
 
-from src.schemas.auth import Token
+from src.schemas.auth import TokenDTO
 from src.schemas.user import UserDTO, UserWithJwt
 from src.models import User 
 from src.tests.factories.user_factory import UserFactory
@@ -26,7 +26,7 @@ async def user_login_with_jwt(client, new_user):
         "password": "12345678"
     })
 
-    token = Token(**response.json())
+    token = TokenDTO(**response.json())
 
     return UserWithJwt(
         id=new_user.id,
